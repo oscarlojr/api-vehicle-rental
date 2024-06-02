@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace api_vehicle_rental.Models
 {
-    public class Vehicle
+    public class Vehicle : BaseEntity
     {
         public EnumStatusVehicle Status { get; set; }
-        public int VehicleId { get; set; }
         public string VehicleBrand { get; set; }
         public string VehicleModel { get; set; }
         public string VehicleLicensePlate { get; set; }

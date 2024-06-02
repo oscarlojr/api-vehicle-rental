@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace api_vehicle_rental.Models
 {
-    public class User
+    public class User : BaseEntity
     {
-        public List<Rental> rentals = new List<Rental>();
-        public int UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Telephone { get; set; }

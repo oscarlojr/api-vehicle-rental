@@ -12,6 +12,16 @@ namespace api_vehicle_rental.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; } 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure decimal precision
+            modelBuilder.Entity<Rental>()
+                .Property(r => r.RentalValue)
+                .HasColumnType("decimal(18,2)");
+            
+            base.OnModelCreating(modelBuilder);
+        }
         
     }
 }

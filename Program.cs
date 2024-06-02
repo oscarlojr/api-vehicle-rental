@@ -1,9 +1,20 @@
 using api_vehicle_rental.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<RentalVehiclesContext>(options => 
+// Verifica e configura a cultura invariante
+var globalizationInvariant = Environment.GetEnvironmentVariable("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT");
+Console.WriteLine($"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: {globalizationInvariant}");
+
+if (globalizationInvariant?.ToLower() != "false")
+{
+    CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+    CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+}
+
+builder.Services.AddDbContext<RentalVehiclesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StandardConnection") + ";TrustServerCertificate=True"));
 
 // Add services to the container.
